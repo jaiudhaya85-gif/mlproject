@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HIDS Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div id="app">
+
+    <!-- ================= AUTH SCREEN ================= -->
+    <section id="auth-screen" class="card">
+        <h2>Login</h2>
+
+        <form id="login-form">
+            <input id="login-username" type="text" placeholder="Username" required>
+            <input id="login-password" type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <h3>or Register</h3>
+
+        <form id="register-form">
+            <input id="reg-username" type="text" placeholder="Username" required>
+            <input id="reg-password" type="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboard-screen" class="hidden">
+
+        <div class="header">
+            <h2>HIDS Dashboard</h2>
+            <button id="logout-btn">Logout</button>
+        </div>
+
+        <!-- ================= ALERTS ================= -->
+        <div class="card">
+            <h3>All Alerts</h3>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Severity</th>
+                    <th>Timestamp</th>
+                </tr>
+                </thead>
+                <tbody id="alertsTable"></tbody>
+            </table>
+        </div>
+
+        <!-- ================= ALERTS CHART ================= -->
+        <div class="card">
+            <h3>Alerts Chart</h3>
+            <canvas id="alertsChart" height="120"></canvas>
+        </div>
+
+        <!-- ================= LOGIN HISTORY ================= -->
+        <div class="card">
+            <h3>Login History</h3>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>IP Address</th>
+                    <th>Timestamp</th>
+                </tr>
+                </thead>
+                <tbody id="historyTable"></tbody>
+            </table>
+        </div>
+
+        <!-- ================= MANUAL ALERT ================= -->
+        <div class="card">
+            <h3>Create Manual Alert</h3>
+
+            <input id="m_username" type="text" placeholder="Username">
+            <input id="m_type" type="text" placeholder="Alert type (manual/suspicious)">
+            <textarea id="m_desc" placeholder="Description"></textarea>
+
+            <button onclick="createManualAlert()">Create Alert</button>
+        </div>
+
+    </section>
+
+</div>
+
+<!-- JS (Loaded AFTER page content) -->
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>
