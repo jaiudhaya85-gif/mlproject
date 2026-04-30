@@ -7,3 +7,6 @@ pymysql
 werkzeug
 joblib
 scikit-learn
+pandas
+requests
+cryptography
